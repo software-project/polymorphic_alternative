@@ -6,7 +6,7 @@ module PolymorphicAlternative
 #
 #    polymorphic_belongs_to :
     def polymorphic_belongs_to relation_name, relations = []
-      class_attribute :polymorphic_relations
+      class_attribute :polymorphic_relations unless defined? self.polymorphic_relations
       self.polymorphic_relations ||= {}
       self.polymorphic_relations = self.polymorphic_relations.merge(relation_name.to_sym => relations)
       relations.each do |relation|
