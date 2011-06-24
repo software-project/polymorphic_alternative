@@ -1,6 +1,31 @@
 = polymorphic_alternative
 
-Description goes here.
+Do you also don't like the way Rails handle polymorphic relations? SQL foreign keys were created for a reason and lets keep it that way.
+
+Introduction polymorphic_alternative.
+
+How it works?
+
+class User
+
+  polymorphic_belongs_to :owner, [:facebook_user, :twitter_user]
+
+end
+
+Above will create standard belongs_to relations:
+
+belongs_to :facebook_user
+belongs_to :twitter_user
+
+and also create a getter and getter methods, so you can use it like that:
+
+user = User.new
+user.owner = FacebookUser.new
+
+Then user.owner will return new FacebookUser.
+
+We recommend to use it with "automatic_foreign_key" gem.
+
 
 == Contributing to polymorphic_alternative
  
