@@ -22,6 +22,14 @@ module PolymorphicAlternative
           nil
         end
 
+#       Gets class name of relation. For keeping compatibility with standard Rails polymorphic relation.
+        def #{relation_name}_type
+          self.polymorphic_relations[:#{relation_name}].each{|relation|
+            return self.send(relation).class.name.to_s unless self.send(relation).blank?
+          }
+          nil
+        end
+
 #       Assings relation to its real parent and sets others relations to nil
         def #{relation_name}= value
           if value
