@@ -6,21 +6,21 @@ Introduction polymorphic_alternative.
 
 How it works?
 
-class User
+    class User
 
-  polymorphic_belongs_to :owner, [:facebook_user, :twitter_user]
+      polymorphic_belongs_to :owner, [:facebook_user, :twitter_user]
 
-end
+    end
 
 Above will create standard belongs_to relations:
 
-belongs_to :facebook_user
-belongs_to :twitter_user
+    belongs_to :facebook_user
+    belongs_to :twitter_user
 
 and also create a getter and getter methods, so you can use it like that:
 
-user = User.new
-user.owner = FacebookUser.new
+    user = User.new
+    user.owner = FacebookUser.new
 
 Then user.owner will return new FacebookUser.
 
