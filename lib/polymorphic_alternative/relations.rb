@@ -36,16 +36,16 @@ module PolymorphicAlternative
             relation_class = value.class.name.underscore
           else
             self.polymorphic_relations[:#{relation_name}].each{|relation|
-              self.send(relation + "_id=", nil)
+              self.send(relation.to_s + "_id=", nil)
             }
             return nil
           end
 
           if self.polymorphic_relations[:#{relation_name}].any?{|rel| rel.to_sym == relation_class.to_sym}
             self.polymorphic_relations[:#{relation_name}].each{|relation|
-              self.send(relation + "_id=", nil)
+              self.send(relation.to_s + "_id=", nil)
             }
-            self.send (relation_class + "="), value
+            self.send (relation_class.to_s + "="), value
           else
             raise("Cannot assign this relation to #{relation_name}")
           end
