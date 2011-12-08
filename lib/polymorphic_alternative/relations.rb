@@ -5,12 +5,12 @@ module PolymorphicAlternative
 #    Example:
 #
 #    polymorphic_belongs_to :
-    def polymorphic_belongs_to relation_name, relations = []
+    def polymorphic_belongs_to relation_name, relations, options = {}
       class_attribute :polymorphic_relations unless defined? self.polymorphic_relations
       self.polymorphic_relations ||= {}
       self.polymorphic_relations = self.polymorphic_relations.merge(relation_name.to_sym => relations)
       relations.each do |relation|
-        belongs_to relation.to_sym
+        belongs_to relation.to_sym, options
       end
 
       class_eval <<-METHODS, __FILE__, __LINE__ + 1
