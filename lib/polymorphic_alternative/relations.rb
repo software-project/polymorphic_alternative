@@ -33,7 +33,7 @@ module PolymorphicAlternative
 #       Assings relation to its real parent and sets others relations to nil
         def #{relation_name}= value
           if value
-            relation_class = value.class.name.underscore
+            relation_class = value.class.table_name.singularize
           else
             self.polymorphic_relations[:#{relation_name}].each{|relation|
               self.send(relation.to_s + "_id=", nil)
